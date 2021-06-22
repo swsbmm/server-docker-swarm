@@ -27,6 +27,7 @@ providers:
 certificatesResolvers:
   letsencrypt:
     acme:
+#Correo electronico para generar certificados.
       email: swsbmm@gmail.com
       storage: acme.json
       keyType: EC384
