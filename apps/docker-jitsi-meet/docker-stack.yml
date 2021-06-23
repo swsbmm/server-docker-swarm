@@ -112,12 +112,15 @@ services:
         labels:
             - "traefik.enable=true"
             - "traefik.docker.network=proxy"
-            - "traefik.http.routers.wp-secure.entrypoints=websecure"
-            - "traefik.http.routers.wp-secure.rule=Host(`meet.redflox.com`)"	    
+            - "traefik.backend=jc_backend"
+            - "traefik.http.routers.web-secure.entrypoints=websecure"
+            - "traefik.http.routers.web-secure.rule=Host(`meet.redflox.com`)"
+            - "traefik.http.services.web.loadbalancer.server.port=80"
+            - "traefik.http.services.web.loadbalancer.server.port=443"	    
     # XMPP server
     prosody:
         image: jitsi/prosody:latest
-        restart: ${RESTART_POLICY}
+       # restart: ${RESTART_POLICY}
         expose:
             - '5222'
             - '5347'
