@@ -122,36 +122,36 @@ services:
       - internal
       - traefik
 #JIBRI BETA PARA GRABACIONES
-  jibri:
-    <<: *defaults
-    image: jitsi/jibri:latest
-    volumes:
-      - ${VOLUME_PATH}jibri:/config
-      - /dev/shm:/dev/shm
-    cap_add:
-      - SYS_ADMIN
-      - NET_BIND_SERVICE
-    command: >
-      sh -c '
+#  jibri:
+#    <<: *defaults
+#    image: jitsi/jibri:latest
+#    volumes:
+#      - ${VOLUME_PATH}jibri:/config
+#      - /dev/shm:/dev/shm
+#    cap_add:
+#      - SYS_ADMIN
+#      - NET_BIND_SERVICE
+#    command: >
+#      sh -c '
       # Obtains the name of the base container.
-      export PARENT=$$(basename "$$(head /proc/1/cgroup)");
-      # Defines the name of the conatiner with your app for sidecar to follow. 
-      export CONT_NAME=myapp_$$(date +%s);
-      docker run --rm -d -v /var/run/docker.sock:/var/run/docker.sock -e PARENT -e CHILD=$${CONT_NAME} sixsq/wrapper-cleaner:master 
-      && docker run --rm --device /dev/snd --name $${CONT_NAME} jibri'
+#      export PARENT=$$(basename "$$(head /proc/1/cgroup)");
+#      # Defines the name of the conatiner with your app for sidecar to follow. 
+#      export CONT_NAME=myapp_$$(date +%s);
+#      docker run --rm -d -v /var/run/docker.sock:/var/run/docker.sock -e PARENT -e CHILD=$${CONT_NAME} sixsq/wrapper-cleaner:master 
+#      && docker run --rm --device /dev/snd --name $${CONT_NAME} jibri'
    # devices:
    #   - /dev/snd:/dev/snd
-    depends_on:
-      - jicofo
-    networks:
-      - internal
+#    depends_on:
+#      - jicofo
+#    networks:
+#      - internal
 #----------------------------
 volumes:
   web:
   prosody:
   jicofo:
   jvb:
-  jibri:
+#  jibri:
 
 networks:
   internal:
