@@ -31,3 +31,22 @@ Buy me a beer (BTC): [bitcoin:112aZxX9Jiya4TM6Le4foxTq9V8U6aVGbG](bitcoin:112aZx
 This project is licensed under the GNU GPL v3.0 - see the [LICENSE.txt](LICENSE.txt) file for details
 
 **Free Software, Hell Yeah!**
+
+#Montar un stack de Jitsi con swarm:
+
+1. Modificar el dominio o subdominio en el fichero jitsi.yml:
+```
+nano jitsi.yml
+```
+2. Lanzar el stack:
+```
+DOMAIN=meet.redflox.com SCHEME=https docker stack deploy -c jitsi.yml jitsi
+```
+3. Ahora necesita configurar la cuenta de administrador. Inicie sesión en el contenedor de prosodia de Jitsi. (Comando de actualización para reflejar el nombre de su contenedor):
+```
+docker exec -it jitsi_prosody_1.xxxxxx bash
+```
+```
+prosodyctl --config /config/prosody.cfg.lua adduser myuser@meet.jitsi
+```
+
